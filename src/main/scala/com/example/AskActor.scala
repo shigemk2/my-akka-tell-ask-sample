@@ -1,8 +1,11 @@
 package com.example
 
 import akka.actor.{Actor, Props}
+
 import scala.concurrent.duration._
 import akka.pattern.ask
+import akka.util.Timeout
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class AskActor extends Actor {
   
@@ -10,7 +13,7 @@ class AskActor extends Actor {
 
   def receive = {
     case "Start" =>
-      implicit val timeout = 3 seconds
+      implicit val timeout = Timeout(3 seconds)
       val replyF = recipient ? "Hello"
       replyF.onSuccess {
         case reply => println(reply)
