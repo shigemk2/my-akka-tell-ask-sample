@@ -7,7 +7,7 @@ class TellActor extends Actor {
 
   def receive = {
     case "Start" =>
-      receipient ! "Hello"
+      receipient ! "Tell"
 
     case reply => println(reply)
   }
